@@ -21,7 +21,7 @@ QBCore.Functions.CreateCallback('test:getplayers', function(source, cb) -- WORKS
             sources = GetPlayerPed(ped.PlayerData.source),
             identifier = GetPlayerIdentifier(ped.PlayerData.source),
             sourceplayer= ped.PlayerData.source
-
+            
         })
     end
     cb(players)

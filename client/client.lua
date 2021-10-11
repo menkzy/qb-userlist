@@ -113,7 +113,6 @@ RegisterNetEvent('qb-userlist:client:Show', function(players)
         local playeridx = GetPlayerFromServerId(player.id)
         local ped = GetPlayerPed(playeridx)
         local name = '#'..player.id
-        
         -- Names Logic
         local idTesta = CreateFakeMpGamerTag(ped, name, false, false, "", false)
         
