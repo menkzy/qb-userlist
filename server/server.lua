@@ -30,3 +30,22 @@ end)
 QBCore.Commands.Add('ulist', 'Open User List', {}, false, function(source, args)
     TriggerClientEvent('qb-userlist:client:openMenu', source)
 end)
+
+RegisterNetEvent('qb-userlist:server:GetPlayersForList', function()
+    local src = source
+    local players = {}
+    for k, v in pairs(QBCore.Functions.GetPlayers()) do
+        local targetped = GetPlayerPed(v)
+        local ped = QBCore.Functions.GetPlayer(v)
+        table.insert(players, {
+            name = ped.PlayerData.charinfo.firstname .. ' ' .. ped.PlayerData.charinfo.lastname .. ' | (' .. GetPlayerName(v) .. ')',
+            id = v,
+            coords = GetEntityCoords(targetped),
+            cid = ped.PlayerData.charinfo.firstname .. ' ' .. ped.PlayerData.charinfo.lastname,
+            citizenid = ped.PlayerData.citizenid,
+            sources = GetPlayerPed(ped.PlayerData.source),
+            sourceplayer= ped.PlayerData.source
+        })
+    end
+    TriggerClientEvent('qb-userlist:client:Show', src, players)
+end)
