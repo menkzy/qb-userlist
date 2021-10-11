@@ -3,6 +3,10 @@
 
 ![image](https://i.imgur.com/kOsvsAe.gif)
 
+To do:
+- Add recently disconnected
+- more copy info on button press?
+
 # License
 
     QBCore Framework
