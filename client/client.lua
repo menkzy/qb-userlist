@@ -3,30 +3,19 @@ local ShowNames = false
 
 
 local menu = MenuV:CreateMenu(false, 'Online Players', 'topright', 220, 20, 60, 'size-125', 'none', 'menuv', 'main menu')
-local menu2 = MenuV:CreateMenu(false, 'Online Players', 'topright', 220, 20, 60, 'size-125', 'none', 'menuv', 'Online Players')
 
 RegisterNetEvent('qb-userlist:client:openMenu', function()
     MenuV:OpenMenu(menu)
 end)
 
 
+
 local menu_button = menu:AddButton({
     icon = '🙍‍♂️',
     label = 'Online Players',
-    value = menu2,
+    value = menu,
     description = 'View List Of Players'
 })
-
-local names_button = menu:AddCheckbox({
-    icon = '📋',
-    label = 'Names',
-    value = menu3,
-    description = 'Enable/Disable Names overhead'
-})
-
-names_button:On('change', function()
-    TriggerEvent('qb-userlist:client:toggleNames')
-end)
 
 local function OpenPlayerMenus(player)
     local Players = MenuV:CreateMenu(false, player.cid .. ' Options', 'topright', 220, 20, 60, 'size-125', 'none', 'menuv') -- Players Sub Menu
@@ -65,10 +54,10 @@ local function OpenPlayerMenus(player)
 end
 
 menu_button:On('select', function(item)
-    menu2:ClearItems()
+    menu:ClearItems()
     QBCore.Functions.TriggerCallback('test:getplayers', function(players)
         for k, v in pairs(players) do
-            local menu_button10 = menu2:AddButton({
+            local menu_button10 = menu:AddButton({
                 label = 'ID:' .. v["id"] .. ' | ' .. v["name"],
                 value = v,
                 description = 'Player Name',
@@ -101,6 +90,23 @@ Citizen.CreateThread(function()
         end
     end
 end)
+
+CreateThread(function()
+    while true do
+        Wait(0)
+        if ShowNames then
+            QBCore.Functions.TriggerClientEvent('qb-userlist:client:Show', playeridx)
+        end
+    end
+end)
+
+RegisterCommand('+shownames', function()
+    ShowNames = true
+end, false)
+RegisterCommand('-shownames', function()
+    ShowNames = false
+end, false)
+RegisterKeyMapping('+shownames', 'Show Names', 'keyboard', 'u')
 
 RegisterNetEvent('qb-userlist:client:Show', function(players)
     for k, player in pairs(players) do
