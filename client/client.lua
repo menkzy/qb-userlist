@@ -114,13 +114,13 @@ RegisterNetEvent('qb-userlist:client:Show', function(players)
         if ShowNames then
             SetMpGamerTagVisibility(idTesta, 0, true)
             if NetworkIsPlayerTalking(playeridx) then
-                SetMpGamerTagVisibility(idTesta, 9, true)
+                SetMpGamerTagVisibility(idTesta, 3, true)
                 --   Citizen.InvokeNative(0x63BB75ABEDC1F6A0, idTesta, 9, true)
             else
-                SetMpGamerTagVisibility(idTesta, 9, false)
+                SetMpGamerTagVisibility(idTesta, 3, false)
             end
         else
-            SetMpGamerTagVisibility(idTesta, 9, false)
+            SetMpGamerTagVisibility(idTesta, 3, false)
             SetMpGamerTagVisibility(idTesta, 0, false)
         end
     end
