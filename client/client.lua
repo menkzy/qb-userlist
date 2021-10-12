@@ -84,7 +84,7 @@ end)
 
 Citizen.CreateThread(function()
     while true do
-        Wait(0)
+        Wait(60)
         if ShowNames then
             TriggerServerEvent('qb-userlist:server:GetPlayersForList')
         end
@@ -93,9 +93,9 @@ end)
 
 CreateThread(function()
     while true do
-        Wait(0)
+        Wait(60)
         if ShowNames then
-            QBCore.Functions.TriggerClientEvent('qb-userlist:client:Show', playeridx)
+            TriggerServerEvent('qb-userlist:client:Show')
         end
     end
 end)
