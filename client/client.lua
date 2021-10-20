@@ -55,7 +55,7 @@ QBCore.Functions.TriggerCallback('test:getplayers', function(players)
                 local select = btn.Value -- get all the values from v!
                 OpenPlayerMenus(select) -- only pass what i select nothing else
             end
-        }) -- WORKS
+        })
     end
 end)
 
